@@ -1,0 +1,17 @@
+body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; line-height: 1.6; }
+header { background-color: #8B4513; color: #fff; padding: 1.5rem; text-align: center; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); }
+header h1 { margin: 0; font-size: 2.5em; }
+header p { margin: 0.5em 0 0; font-size: 1.2em; }
+.menu-container { display: flex; flex-direction: column; align-items: center; padding: 2rem 1rem; }
+.menu-container h2 { color: #333; border-bottom: 2px solid #8B4513; padding-bottom: 0.5rem; margin-bottom: 2rem; }
+.menu-item { background-color: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin: 1rem 0; padding: 1.5rem; width: 90%; max-width: 600px; display: flex; gap: 1.5rem; align-items: center; transition: transform 0.2s; }
+.menu-item:hover { transform: translateY(-5px); }
+.menu-item img { width: 120px; height: 120px; border-radius: 8px; object-fit: cover; }
+.item-details { flex-grow: 1; }
+.item-details h3 { margin: 0 0 0.5rem; color: #333; font-size: 1.4em; }
+.item-details p { color: #666; margin: 0; }
+.price { font-weight: bold; color: #e67e22; font-size: 1.3em; margin-top: 0.5rem; display: inline-block; }
+.order-section { text-align: center; margin-top: 2rem; margin-bottom: 4rem; }
+.order-section button { background-color: #8B4513; color: white; padding: 15px 30px; border: none; border-radius: 8px; cursor: pointer; font-size: 1.2em; font-weight: bold; transition: background-color 0.3s; }
+.order-section button:hover { background-color: #a0522d; }
+footer { text-align: center; padding: 1rem; background-color: #333; color: #fff; position: relative; bottom: 0; width: 100%; }

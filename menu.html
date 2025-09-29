@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🍲Hotel Bhagyashree</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #FFE5B4;
+      min-height: 100vh;
+      color: #333;
+      padding-bottom: 40px;
+    }
+    
+    header {
+      background-color: #FF7F50;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      animation: slideDown 0.5s ease-out;
+    }
+    
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+    
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 5px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    header p {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+    
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      padding: 40px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      animation: fadeInUp 0.6s ease-out backwards;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(5) { animation-delay: 0.5s; }
+    .card:nth-child(6) { animation-delay: 0.6s; }
+    .card:nth-child(7) { animation-delay: 0.7s; }
+    .card:nth-child(8) { animation-delay: 0.8s; }
+    .card:nth-child(9) { animation-delay: 0.9s; }
+    .card:nth-child(10) { animation-delay: 1s; }
+    
+    .card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    
+    .card:hover img {
+      transform: scale(1.1);
+    }
+    
+    .card-content {
+      padding: 20px;
+    }
+    
+    .item-name {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #2d3748;
+    }
+    
+    .item-desc {
+      font-size: 13px;
+      color: #718096;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    
+    .price {
+      font-weight: bold;
+      font-size: 24px;
+      color: #FF7F50;
+      margin-bottom: 15px;
+    }
+    
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .controls button {
+      background: #FF7F50;
+      border: none;
+      color: white;
+      font-size: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 127, 80, 0.4);
+    }
+    
+    .controls button:hover {
+      transform: scale(1.15);
+      box-shadow: 0 6px 20px rgba(255, 127, 80, 0.6);
+    }
+    
+    .controls button:active {
+      transform: scale(0.95);
+    }
+    
+    .controls span {
+      font-size: 20px;
+      font-weight: 600;
+      min-width: 30px;
+      text-align: center;
+      color: #2d3748;
+    }
+    
+    .cart {
+      background: white;
+      margin: 20px auto;
+      max-width: 1200px;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      animation: fadeIn 0.8s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .cart h2 {
+      text-align: center;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    
+    .cart table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    
+    .cart th {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 16px;
+    }
+    
+    .cart td {
+      border: 1px solid #e2e8f0;
+      padding: 15px;
+      text-align: center;
+      font-size: 15px;
+    }
+    
+    .cart tr:nth-child(even) {
+      background-color: #f7fafc;
+    }
+    
+    .grand-total {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #2d3748;
+    }
+    
+    .checkout {
+      display: block;
+      margin: 30px auto 0;
+      padding: 15px 40px;
+      font-size: 20px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+      transition: all 0.3s ease;
+    }
+    
+    .checkout:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6);
+    }
+    
+    .checkout:active {
+      transform: translateY(-1px);
+    }
+    
+    .badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    
+    .empty-cart {
+      text-align: center;
+      color: #718096;
+      padding: 40px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🍲Hotel Bhagyashree</h1>
+    <p>Authentic Indian Cuisine • Fresh & Delicious</p>
+  </header>
+
+  <section class="menu" id="menu"></section>
+
+  <section class="cart">
+    <h2>🛒 Your Order</h2>
+    <div id="cartContent">
+      <div class="empty-cart">Your cart is empty. Add some delicious items!</div>
+    </div>
+    <button class="checkout" onclick="checkout()">Proceed to Checkout 🎉</button>
+  </section>
+
+  <script>
+    const menuItems = [
+      {id:1, name:"Paneer Butter Masala", desc:"Creamy cottage cheese in rich tomato gravy", price:220, img:"https://i.ibb.co/0JH7s9Q/paneer.jpg", tag:"Popular"},
+      {id:2, name:"Chicken Biryani", desc:"Aromatic basmati rice with tender chicken", price:250, img:"https://i.ibb.co/6XhKzkH/biryani.jpg", tag:"Bestseller"},
+      {id:3, name:"Masala Dosa", desc:"Crispy rice crepe with spiced potato filling", price:120, img:"https://i.ibb.co/VQ1J9vh/dosa.jpg"},
+      {id:4, name:"Gulab Jamun", desc:"Soft milk dumplings in sweet syrup", price:80, img:"https://i.ibb.co/ZVSpJZf/gulab-jamun.jpg"},
+      {id:5, name:"Masala Chai", desc:"Traditional spiced Indian tea", price:20, img:"https://i.ibb.co/s52d5xX/chai.jpg"},
+      {id:6, name:"Butter Chicken", desc:"Tender chicken in buttery tomato sauce", price:280, img:"https://i.ibb.co/ScxF6vn/butter-chicken.jpg", tag:"Chef Special"},
+      {id:7, name:"Tandoori Roti", desc:"Soft whole wheat bread from clay oven", price:30, img:"https://i.ibb.co/JtGZCc7/roti.jpg"},
+      {id:8, name:"Dal Makhani", desc:"Creamy black lentils slow-cooked overnight", price:180, img:"https://i.ibb.co/8XZvJxN/dal.jpg"},
+      {id:9, name:"Samosa", desc:"Crispy pastry with spiced potato filling", price:40, img:"https://i.ibb.co/JkNTh42/samosa.jpg", tag:"Popular"},
+      {id:10, name:"Mango Lassi", desc:"Refreshing yogurt drink with mango pulp", price:70, img:"https://i.ibb.co/N9KmY5N/lassi.jpg"}
+    ];
+
+    const cart = {};
+
+    function renderMenu() {
+      const menuDiv = document.getElementById("menu");
+      menuDiv.innerHTML = '';
+      menuItems.forEach(item => {
+        const badge = item.tag ? `<div class="badge">${item.tag}</div>` : '';
+        menuDiv.innerHTML += `
+          <div class="card">
+            ${badge}
+            <img src="${item.img}" alt="${item.name}">
+            <div class="card-content">
+              <div class="item-name">${item.name}</div>
+              <div class="item-desc">${item.desc}</div>
+              <div class="price">₹${item.price}</div>
+              <div class="controls">
+                <button onclick="decrease(${item.id})">−</button>
+                <span id="qty-${item.id}">0</span>
+                <button onclick="increase(${item.id})">+</button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function increase(id) {
+      cart[id] = (cart[id] || 0) + 1;
+      document.getElementById("qty-"+id).innerText = cart[id];
+      renderCart();
+    }
+
+    function decrease(id) {
+      if (cart[id]) {
+        cart[id]--;
+        if (cart[id] === 0) delete cart[id];
+        document.getElementById("qty-"+id).innerText = cart[id] || 0;
+        renderCart();
+      }
+    }
+
+    function renderCart() {
+      const cartContent = document.getElementById("cartContent");
+      
+      if (Object.keys(cart).length === 0) {
+        cartContent.innerHTML = '<div class="empty-cart">Your cart is empty. Add some delicious items!</div>';
+        return;
+      }
+      
+      let html = '<table><tr><th>Item</th><th>Qty</th><th>Price</th><th>Total</th></tr>';
+      let grandTotal = 0;
+      
+      for (let id in cart) {
+        const item = menuItems.find(m => m.id == id);
+        const qty = cart[id];
+        const total = qty * item.price;
+        grandTotal += total;
+        html += `
+          <tr>
+            <td>${item.name}</td>
+            <td>${qty}</td>
+            <td>₹${item.price}</td>
+            <td>₹${total}</td>
+          </tr>
+        `;
+      }
+      
+      html += '</table>';
+      html += `<div class="grand-total">Grand Total: ₹${grandTotal.toFixed(2)}</div>`;
+      cartContent.innerHTML = html;
+    }
+
+    function checkout() {
+      if (Object.keys(cart).length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+
+      const orderData = [];
+      let grandTotal = 0;
+      for (let id in cart) {
+        const item = menuItems.find(m => m.id == id);
+        const qty = cart[id];
+        const total = qty * item.price;
+        grandTotal += total;
+        orderData.push({ name: item.name, qty: qty, price: item.price });
+      }
+
+      fetch("insert.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items: orderData, total: grandTotal })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Redirect to order summary page with order_id in URL
+          window.location.href = "order_summary.php?order_id=" + data.order_id;
+        } else {
+          alert("❌ Order failed: " + data.message);
+        }
+      })
+      .catch(err => {
+        console.error("Error:", err);
+        alert("❌ Failed to place order!");
+      });
+    }
+
+    renderMenu();
+  </script>
+</body>
+</html>
